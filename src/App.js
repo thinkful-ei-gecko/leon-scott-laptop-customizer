@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 // Normalizes string as a slug - a string that is safe to use
 // in both URLs and html attributes
 import slugify from 'slugify';
-import ComputerOption from './customization/computer-option/ComputerOption'
+import ComputerOption from './customization/feature/computer-option/ComputerOption';
+import Feature from './customization/feature/Feature';
+import Customization from './customization/Customization';
 
 import './App.css';
 
@@ -42,6 +44,8 @@ class App extends Component {
     this.setState({
       selected
     });
+    console.log(selected)
+    console.log(this.state)
   };
 
   render() { //renders our feature option
@@ -104,12 +108,21 @@ class App extends Component {
           <h1>ELF Computing | Laptops</h1>
         </header>
         <main>
-            <ComputerOption itemHash={1232} />
-          {/* <form className="main__form">
-            <Customization />
+          {/* <Feature featureArray={[
+            {
+              name: '17th Generation Intel Core HB (7 Core with donut spare)',
+              cost: 700
+            },
+            {
+              name: 'Professor X AMD Fire Breather with sidewinder technology',
+              cost: 1200
+            }
+          ]} /> */}
+          <form className="main__form">
+            <Customization featuresList={this.props.features} handleUpdate={this.updateFeature} state={this.state}/>
           </form>
 
-
+{/* 
           <section className="main__summary">
             <h2>Your cart</h2>
             {summary}

@@ -1,22 +1,35 @@
-// import React from 'react';
+import React from 'react';
+import ComputerOption from './computer-option/ComputerOption'
+import slugify from 'slugify';
 
-// export default class ComputerOption extends React.Component {
-
-
-//     // const features = Object.keys(this.props.features).map((feature, idx) => {
-//     //     const featureHash = feature + '-' + idx;
-//     //     const options = this.props.features[feature].map(item => {
-//     //       const itemHash = slugify(JSON.stringify(item));
+export default class Feature extends React.Component {
 
 
-//     render() {
-//       return ( //puts together list of computer options
-//         <fieldset className="feature" key={featureHash}>
-//           <legend className="feature__name">
-//             <h3>{feature}</h3>
-//           </legend>
-//           {options}
-//         </fieldset>
-//       );
-//     }
-// }
+generateOptions() {
+    const options = this.props.featureArray.map(item => {
+        const itemHash = slugify(JSON.stringify(item));
+        return <ComputerOption itemHash={itemHash} 
+        name={item.name} 
+        cost={item.cost} 
+        key={itemHash} 
+        item={item}
+        handleUpdate={this.props.handleUpdate}
+        featureName={this.props.featureName}
+        state={this.props.state} />
+    })
+    return options;
+}
+
+
+
+    render() {
+      return (
+        <fieldset className="feature" key={this.props.featureHash}>
+          <legend className="feature__name">
+            <h3>{this.props.featureName}</h3>
+          </legend>
+          {this.generateOptions()}
+        </fieldset>
+      );
+    }
+}
