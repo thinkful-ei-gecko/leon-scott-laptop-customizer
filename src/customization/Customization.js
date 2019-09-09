@@ -1,5 +1,6 @@
 import React from 'react';
-import Feature from './feature/Feature'
+import Feature from './feature/Feature';
+import './customization.css'
 
 export default class Customization extends React.Component {
 
@@ -18,9 +19,9 @@ export default class Customization extends React.Component {
 
     render() {
         return (
-            <>
+            <form className="main__form">
                 {this.generateFeatureForm()}
-            </>
+            </form>
         );
     }
 }
